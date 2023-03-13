@@ -15,12 +15,14 @@ SELECT COUNT(*)
 FROM staff;
 
 /* What about gender distribution? */
-SELECT gender, COUNT(*) AS total_employees
+SELECT gender, 
+       COUNT(*) AS total_employees
 FROM staff
 GROUP BY gender;
 
 /* How many employees in each department */
-SELECT department, COUNT(*) AS total_employee
+SELECT department, 
+       COUNT(*) AS total_employee
 FROM staff
 GROUP BY department
 ORDER BY department;
@@ -31,12 +33,13 @@ FROM staff
 ORDER BY department;
 
 /* What is the highest and lowest salary of employees? */
-SELECT MAX(salary) AS max_salary, MIN(salary) AS min_salary
+SELECT MAX(salary) AS max_salary, 
+       MIN(salary) AS min_salary
 FROM staff;
 
 /* What about salary distribution by gender group? */
 SELECT gender,
-	   MIN(salary) As Min_Salary, 
+       MIN(salary) As Min_Salary, 
        MAX(salary) AS Max_Salary, 
        AVG(salary) AS Average_Salary
 FROM staff
@@ -71,29 +74,29 @@ ORDER BY 6 DESC;
 -- Health department has the highest deviation and outdoors department has smallest!
 
 /* Let's see Health department salary */
-SELECT department, salary
+SELECT department, 
+       salary
 FROM staff
 WHERE department LIKE 'Health'
 ORDER BY 2 ASC;
 
 /* We will make 3 buckets to see the salary earning status for Health Department */
 SELECT CASE 
-			WHEN salary >=100000 THEN 'high earner'
-			WHEN salary >=50000 AND salary <100000 THEN 'middle earner'
-            ELSE 'low earner' END AS earning_status,
-            COUNT(*)
+	WHEN salary >=100000 THEN 'high earner'
+	WHEN salary >=50000 AND salary <100000 THEN 'middle earner'
+        ELSE 'low earner' END AS earning_status,
+	COUNT(*)
 FROM staff
 WHERE department LIKE 'Health'
 GROUP BY 1 
 ORDER BY 2 DESC; -- We can see that there are 24 high earners, 14 middle earners and 8 low earners!
 
 /* Let's find out about Outdoors department salary */
-SELECT CASE
-			WHEN salary >= 100000 THEN 'high earner'
-			WHEN salary >= 50000 AND salary < 100000 THEN 'middle earner'
-			ELSE 'low earner'
-			END AS earning_status,
-            COUNT(*)
+SELECT CASE WHEN salary >= 100000 THEN 'high earner'
+	    WHEN salary >= 50000 AND salary < 100000 THEN 'middle earner'
+	    ELSE 'low earner'
+	    END AS earning_status,
+       COUNT(*)
 FROM staff
 WHERE department LIKE 'Outdoors'
 GROUP BY 1
