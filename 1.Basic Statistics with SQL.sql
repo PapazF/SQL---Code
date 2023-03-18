@@ -101,8 +101,3 @@ FROM staff
 WHERE department LIKE 'Outdoors'
 GROUP BY 1
 ORDER BY 2 DESC; -- We can see that there are 34 high earners, 12 middle earners and 2 low earners!
-
-
-
-
-
